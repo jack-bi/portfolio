@@ -7,7 +7,7 @@
 
 :root {
     --color-primary: #191d2b;
-    --color-secondary: #27AE60;
+    --color-secondary: #7139d7;
     --color-white: #FFFFFF;
     --color-black: #000;
     --color-grey0: #f8f8f8;
@@ -23,7 +23,7 @@
 
 .light-mode {
     --color-primary: #FFFFFF;
-    --color-secondary: #F56692;
+    --color-secondary: #66abf5;
     --color-white: #454e56;
     --color-black: #000;
     --color-grey0: #f8f8f8;
@@ -63,7 +63,10 @@ section {
     position: absolute;
     left: 0;
     top: 0;
-    padding: 3rem 18rem;
+    padding: 3rem 10rem;
+    max-width: 1920px;
+    right: 0;
+    margin: auto;
 }
 
 .container {
@@ -154,7 +157,7 @@ section {
         position: relative;
         .h-shape {
             transition: all .4s ease-in-out;
-            width: 65%;
+            width: 64%;
             height: 100%;
             background-color: var(--color-secondary);
             position: absolute;
@@ -166,7 +169,7 @@ section {
         .image {
             border-radius: var(--br-sm-2);
             height: 90%;
-            width: 68%;
+            width: 64%;
             margin-left: 4rem;
             background-color: var(--color-black);
             transition: all .4s ease-in-out;
@@ -388,6 +391,7 @@ section {
     .portfolio-item {
         position: relative;
         border-radius: 15px;
+        filter: drop-shadow(2px 2px 4px #3c3c3c);
         img {
             width: 100%;
             height: 300px;
@@ -445,7 +449,7 @@ section {
 }
 
 .portfolio-item:hover .hover-items {
-    opacity: 0.9;
+    opacity: 0.88;
     transform: scale(1);
 }
 
@@ -473,7 +477,7 @@ section {
         }
         img {
             width: 100%;
-            height: 300px;
+            height: 250px;
             object-fit: cover;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
@@ -489,6 +493,7 @@ section {
                 margin-bottom: .7rem;
                 transition: all .4s ease-in-out;
                 cursor: pointer;
+                text-align: center;
                 &:hover { color: var(--color-secondary); }
             }
             p{
