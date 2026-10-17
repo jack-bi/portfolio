@@ -1,469 +1,1479 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="styles/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jack｜前端工程師・Vue / React</title>
+    <meta
+      name="description"
+      content="Jack，有 10 年設計背景的前端工程師，用 Vue 3 與 React 把設計稿做成好用的網站與產品介面。"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap"
       rel="stylesheet"
     />
-    <!-- Favicon and touch icons -->
-    <link rel="icon" href="img/ico.png" />
+    <style>
+      :root {
+        --paper: #f2f4f7;
+        --ink: #14161f;
+        --mute: #5b6070;
+        --line: #d5d9e2;
+        --c: #00a3e0;
+        --m: #e6007e;
+        --y: #ffd200;
+        --serif: 'Noto Serif TC', 'Songti TC', 'PMingLiU', serif;
+        --sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 72px;
+      }
+      body {
+        font: 400 17px/1.8 var(--sans);
+        color: var(--ink);
+        background: var(--paper);
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--m);
+        outline-offset: 3px;
+      }
+      .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      #bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        z-index: 30;
+        transform-origin: 0 0;
+        transform: scaleX(0);
+        background: linear-gradient(90deg, var(--c), var(--m), var(--y));
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(242, 244, 247, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      header .wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        gap: 16px;
+      }
+      .logo {
+        font: 900 20px var(--serif);
+        text-decoration: none;
+      }
+      nav {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+      }
+      nav a {
+        padding: 6px 12px;
+        text-decoration: none;
+        font-size: 15px;
+        color: var(--mute);
+        border-bottom: 2px solid transparent;
+        white-space: nowrap;
+      }
+      nav a.on {
+        color: var(--ink);
+        border-color: var(--m);
+      }
+      section {
+        padding-top: 104px;
+      }
+      h2 {
+        font: 900 clamp(28px, 4vw, 40px)/1.3 var(--serif);
+        margin-bottom: 12px;
+      }
+      .sub {
+        color: var(--mute);
+        max-width: 34em;
+        margin-bottom: 40px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 32px;
+        align-items: center;
+        padding-top: 72px;
+      }
+      h1 {
+        font: 900 clamp(38px, 6vw, 66px)/1.25 var(--serif);
+      }
+      .lead {
+        max-width: 29em;
+        margin: 24px 0 32px;
+        color: var(--mute);
+        font-size: 18px;
+      }
+      .btns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 12px 24px;
+        border: 2px solid var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .btn.pri {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .btn:hover {
+        background: var(--m);
+        border-color: var(--m);
+        color: #fff;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 32px;
+        list-style: none;
+        padding: 0;
+      }
+      .tags li {
+        font-size: 14px;
+        line-height: 1.6;
+        padding: 2px 14px;
+        border: 1px solid var(--ink);
+        border-radius: 99px;
+      }
+      .mark svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .mark circle {
+        mix-blend-mode: multiply;
+        animation: settle 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      .mark .c {
+        animation-name: sc;
+      }
+      .mark .m {
+        animation-name: sm;
+      }
+      .mark .y {
+        animation-name: sy;
+      }
+      @keyframes sc {
+        from {
+          transform: translate(-70px, -40px);
+        }
+      }
+      @keyframes sm {
+        from {
+          transform: translate(70px, -30px);
+        }
+      }
+      @keyframes sy {
+        from {
+          transform: translate(0, 60px);
+        }
+      }
+      .svc {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 48px;
+      }
+      .svc div {
+        border-top: 3px solid var(--ink);
+        padding-top: 16px;
+      }
+      .svc h3 {
+        font: 700 20px/1.5 var(--serif);
+        margin-bottom: 4px;
+      }
+      .svc p {
+        color: var(--mute);
+        font-size: 16px;
+      }
+      .work {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 32px;
+        padding: 32px 0;
+        border-top: 1px solid var(--line);
+      }
+      .work.noimg {
+        grid-template-columns: 1fr;
+      }
+      .work img {
+        width: 100%;
+        aspect-ratio: 16/10;
+        object-fit: cover;
+        object-position: top;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .work h3 {
+        font: 700 22px/1.4 var(--serif);
+        margin-bottom: 4px;
+      }
+      .work p {
+        color: var(--mute);
+        margin-bottom: 12px;
+      }
+      .links {
+        display: flex;
+        gap: 20px;
+        font-weight: 500;
+      }
+      .links a {
+        text-decoration: none;
+        border-bottom: 2px solid var(--c);
+      }
+      .links a:hover {
+        border-color: var(--m);
+      }
+      h3.small {
+        font: 700 18px var(--serif);
+        margin: 40px 0 8px;
+        padding-top: 32px;
+        border-top: 1px solid var(--line);
+      }
+      .mini {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 4px 32px;
+      }
+      .mini li {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px 0;
+        border-bottom: 1px dashed var(--line);
+        font-size: 16px;
+      }
+      .mini a {
+        color: var(--mute);
+        font-size: 14px;
+        margin-left: 10px;
+      }
+      .mini a:hover {
+        color: var(--m);
+      }
+      .sites {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        font-size: 16px;
+      }
+      .sites a {
+        border-bottom: 2px solid var(--y);
+        text-decoration: none;
+      }
+      .sites a:hover {
+        border-color: var(--m);
+      }
+      .tl {
+        list-style: none;
+        padding: 0;
+        margin: 40px 0 0 6px;
+        border-left: 2px solid var(--ink);
+      }
+      .tl li {
+        position: relative;
+        padding: 0 0 32px 28px;
+      }
+      .tl li::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 10px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--paper);
+        border: 2px solid var(--ink);
+      }
+      .tl li:first-child::before {
+        background: var(--m);
+        border-color: var(--m);
+      }
+      .tl time {
+        font-weight: 700;
+        color: var(--mute);
+        font-size: 15px;
+      }
+      .tl h3 {
+        font: 700 19px/1.5 var(--serif);
+      }
+      .tl p {
+        color: var(--mute);
+        font-size: 16px;
+        max-width: 36em;
+      }
+      .mail {
+        display: inline-block;
+        font: 900 clamp(24px, 4.5vw, 44px)/1.3 var(--serif);
+        text-decoration: none;
+        border-bottom: 4px solid var(--m);
+        word-break: break-all;
+      }
+      .mail:hover {
+        border-color: var(--c);
+      }
+      footer {
+        margin-top: 120px;
+        padding: 32px 0;
+        border-top: 1px solid var(--line);
+        color: var(--mute);
+        font-size: 14px;
+      }
+      .js .rv {
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .js .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+      .mark {
+        position: relative;
+        aspect-ratio: 1;
+      }
+      .mark.gl svg {
+        display: none;
+      }
+      .mark canvas {
+        display: block;
+        position: absolute;
+        left: -12.5%;
+        top: -12.5%;
+        pointer-events: none;
+      }
+      h1 .ch {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(0.7em) rotate(8deg);
+        animation: chIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        animation-delay: calc(var(--i) * 55ms + 200ms);
+      }
+      @keyframes chIn {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .marq {
+        margin-top: 88px;
+        border-block: 2px solid var(--ink);
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 10px 0;
+        font: 900 clamp(28px, 5vw, 56px)/1.3 var(--serif);
+      }
+      .marq div {
+        display: inline-block;
+        will-change: transform;
+      }
+      .marq i {
+        display: inline-block;
+        width: 0.45em;
+        height: 0.45em;
+        border-radius: 50%;
+        margin: 0 0.7em;
+        vertical-align: middle;
+      }
+      .marq i:nth-of-type(3n + 1) {
+        background: var(--c);
+      }
+      .marq i:nth-of-type(3n + 2) {
+        background: var(--m);
+      }
+      .marq i:nth-of-type(3n) {
+        background: var(--y);
+      }
+      .work img {
+        transition: transform 0.25s ease-out;
+        will-change: transform;
+      }
+      .btn {
+        transition:
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s,
+          transform 0.25s ease-out;
+      }
+      .mail {
+        transition:
+          transform 0.25s ease-out,
+          border-color 0.2s;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        h1 .ch {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .hs {
+        margin-top: 8px;
+      }
+      .stick {
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        padding-bottom: 16px;
+      }
+      .track {
+        display: flex;
+        gap: 24px;
+        width: max-content;
+        padding: 8px max(24px, calc((100vw - 1040px) / 2 + 24px));
+      }
+      .card {
+        flex: none;
+        width: min(78vw, 400px);
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+      }
+      .shot {
+        position: relative;
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: flex-end;
+        padding: 16px;
+        transition: transform 0.25s ease-out;
+        will-change: transform;
+      }
+      .shot b {
+        position: relative;
+        font: 900 26px/1.25 var(--serif);
+      }
+      .shot img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        background: #fff;
+      }
+      .k0 {
+        background: var(--c);
+      }
+      .k1 {
+        background: var(--m);
+        color: #fff;
+      }
+      .k2 {
+        background: var(--y);
+      }
+      .card .kind {
+        display: block;
+        margin-top: 16px;
+        font-size: 13px;
+        color: var(--mute);
+      }
+      .card h3 {
+        font: 700 20px/1.45 var(--serif);
+        margin: 0 0 4px;
+      }
+      .card p {
+        color: var(--mute);
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 10px;
+      }
+      .hp {
+        display: none;
+      }
+      .pin .stick {
+        position: sticky;
+        top: 60px;
+        height: calc(100vh - 60px);
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding-bottom: 0;
+      }
+      .pin .hp {
+        display: block;
+        position: absolute;
+        bottom: 20px;
+        left: max(24px, calc((100vw - 1040px) / 2 + 24px));
+        right: max(24px, calc((100vw - 1040px) / 2 + 24px));
+        height: 3px;
+        background: var(--line);
+      }
+      .hp i {
+        display: block;
+        height: 100%;
+        background: var(--ink);
+        transform-origin: 0 0;
+        transform: scaleX(0);
+      }
+      body {
+        overflow-x: clip;
+      }
+      #intro {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+      }
+      .js #intro {
+        display: block;
+      }
+      .nointro #intro {
+        display: none !important;
+      }
+      #intro > * {
+        position: absolute;
+        inset: 0;
+        transition: transform 0.9s cubic-bezier(0.7, 0, 0.2, 1);
+      }
+      #intro .wc {
+        background: var(--c);
+      }
+      #intro .wm {
+        background: var(--m);
+      }
+      #intro .wy {
+        background: var(--y);
+      }
+      #intro .pp {
+        background: var(--paper);
+        display: grid;
+        place-items: center;
+      }
+      #intro.out {
+        pointer-events: none;
+      }
+      #intro.out > * {
+        transform: translateY(-101%);
+      }
+      #intro.out .wy {
+        transition-delay: 0.12s;
+      }
+      #intro.out .wm {
+        transition-delay: 0.24s;
+      }
+      #intro.out .wc {
+        transition-delay: 0.36s;
+      }
+      .ir {
+        position: relative;
+        width: 200px;
+        height: 180px;
+      }
+      .ir i {
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        mix-blend-mode: multiply;
+      }
+      .ir i:nth-child(1) {
+        background: var(--c);
+        left: 10px;
+        top: 0;
+        transform: translate(calc((1 - var(--p, 0)) * -80px), calc((1 - var(--p, 0)) * -50px));
+      }
+      .ir i:nth-child(2) {
+        background: var(--m);
+        left: 80px;
+        top: 0;
+        transform: translate(calc((1 - var(--p, 0)) * 80px), calc((1 - var(--p, 0)) * -40px));
+      }
+      .ir i:nth-child(3) {
+        background: var(--y);
+        left: 45px;
+        top: 60px;
+        transform: translate(0, calc((1 - var(--p, 0)) * 80px));
+      }
+      .js:not(.ready) {
+        overflow: hidden;
+      }
+      .js:not(.ready) h1 .ch {
+        animation-play-state: paused;
+      }
+      .js .lead,
+      .js .btns,
+      .js .tags {
+        transition:
+          opacity 0.8s 0.9s,
+          transform 0.8s 0.9s;
+      }
+      .js:not(.ready) .lead,
+      .js:not(.ready) .btns,
+      .js:not(.ready) .tags {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .js .lead,
+        .js .btns,
+        .js .tags {
+          transition: none;
+        }
+      }
+      header {
+        background: rgba(13, 14, 18, 0.82);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        --ink: #fff;
+        --mute: #a1a6b4;
+      }
+      .dark {
+        color: #fff;
+        --ink: #fff;
+        --paper: #0d0e12;
+        --mute: #a1a6b4;
+        --line: #2a2d38;
+        background: radial-gradient(ellipse at 72% 45%, #222536 0%, #0d0e12 62%);
+      }
+      .hero {
+        padding-bottom: 96px;
+      }
+      .dark .mark circle {
+        mix-blend-mode: screen;
+      }
+      .marq {
+        margin-top: 0;
+        background: var(--y);
+        color: #14161f;
+        border: 0;
+        padding: 14px 0;
+      }
+      .marq i:nth-of-type(3n) {
+        background: #14161f;
+      }
+      .band {
+        padding-bottom: 112px;
+      }
+      .b-services {
+        background: #f5f5f7;
+      }
+      .b-about {
+        background: #fff;
+        --paper: #fff;
+      }
+      .blue {
+        background: #0058a3;
+        color: #fff;
+        --ink: #fff;
+        --paper: #0058a3;
+        --mute: #c9dbf0;
+        --line: rgba(255, 255, 255, 0.28);
+      }
+      .blue .links a {
+        border-color: var(--y);
+      }
+      .blue .links a:hover {
+        border-color: #fff;
+      }
+      .k0,
+      .k2 {
+        color: #14161f;
+      }
+      .b-contact {
+        background: var(--y);
+        color: #14161f;
+        --ink: #14161f;
+        --paper: #ffda1a;
+        --mute: #4a4630;
+        --line: rgba(20, 22, 31, 0.25);
+      }
+      .b-contact .mail {
+        border-color: #14161f;
+      }
+      .b-contact .mail:hover {
+        border-color: var(--m);
+      }
+      .b-contact .links a {
+        border-color: #14161f;
+      }
+      footer {
+        margin-top: 0;
+        background: #0d0e12;
+        color: #a1a6b4;
+        border: 0;
+      }
+      #intro .pp {
+        background: #0d0e12;
+        color: #fff;
+      }
+      #intro .ir i {
+        mix-blend-mode: screen;
+      }
+      header {
+        background: rgba(0, 0, 0, 0.8);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        --mute: #a1a1a6;
+      }
+      .dark {
+        --paper: #000;
+        --mute: #a1a1a6;
+        --line: #333336;
+        background: radial-gradient(ellipse at 72% 45%, #2a2a2e 0%, #000 64%);
+      }
+      .marq {
+        background: #000;
+        color: #f5f5f7;
+        border-block: 1px solid #2a2a2e;
+      }
+      .marq i:nth-of-type(3n) {
+        background: var(--y);
+      }
+      .blue {
+        background: #1d1d1f;
+        --paper: #1d1d1f;
+        --mute: #a1a1a6;
+        --line: #424245;
+      }
+      .blue .links a {
+        border-color: var(--c);
+      }
+      .blue .links a:hover {
+        border-color: var(--m);
+      }
+      .shot {
+        background: #2c2c2e;
+      }
+      .k0,
+      .k1,
+      .k2 {
+        background: #2c2c2e;
+        color: #f5f5f7;
+      }
+      .shot::before {
+        content: '';
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--c);
+      }
+      .k1::before {
+        background: var(--m);
+      }
+      .k2::before {
+        background: var(--y);
+      }
+      .b-contact {
+        background: #000;
+        color: #f5f5f7;
+        --ink: #f5f5f7;
+        --paper: #000;
+        --mute: #a1a1a6;
+        --line: #333336;
+      }
+      .b-contact .mail {
+        border-color: var(--m);
+      }
+      .b-contact .mail:hover {
+        border-color: var(--c);
+      }
+      .b-contact .links a {
+        border-color: var(--c);
+      }
+      footer {
+        background: #000;
+        color: #a1a1a6;
+        border-top: 1px solid #1d1d1f;
+      }
+      #intro .pp {
+        background: #000;
+      }
+      .ir .ln {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 216px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .ir .ln i {
+        position: static;
+        display: block;
+        width: auto;
+        height: 100%;
+        border-radius: 0;
+        mix-blend-mode: normal;
+        background: #f5f5f7;
+        transform: scaleX(var(--p, 0));
+        transform-origin: 0 0;
+      }
+      .tl .meta {
+        font-size: 14px;
+        color: var(--mute);
+        margin: 2px 0 6px;
+      }
+      .ai {
+        margin-top: 24px;
+        padding: 28px 32px;
+        background: #f5f5f7;
+        border-radius: 18px;
+      }
+      .ai h3 {
+        font: 700 20px/1.5 var(--serif);
+        margin-bottom: 6px;
+      }
+      .ai p {
+        color: var(--mute);
+        font-size: 16px;
+        max-width: 38em;
+      }
+      @media (max-width: 760px) {
+        .hero,
+        .svc,
+        .work {
+          grid-template-columns: 1fr;
+        }
+        .mark {
+          max-width: 320px;
+        }
+        section {
+          padding-top: 80px;
+        }
+        header .wrap {
+          height: auto;
+          padding-top: 10px;
+          padding-bottom: 6px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+        }
+        html {
+          scroll-padding-top: 100px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .mark circle {
+          animation: none;
+        }
+        .js .rv {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+    <script>
+      document.documentElement.classList.add('js')
+      if (matchMedia('(prefers-reduced-motion:reduce)').matches) document.documentElement.classList.add('nointro')
+    </script>
   </head>
-
-  <body class="main-content" ondragstart="return false" onselectstart="return false" onContextMenu="return false">
-    <header class="container header active" id="home">
-      <div class="header-content">
-        <div class="left-header">
-          <div class="h-shape"></div>
-          <div class="image">
-            <img src="img/hero.jpg" alt="" />
-          </div>
-        </div>
-        <div class="right-header">
-          <h1 class="name">您好! 我是<span> Jack</span><br /></h1>
-          <p>我喜歡設計, 喜好編寫美觀、實用的網站</p>
-          <!-- <div class="btn-con">
-                    <a href="" class="main-btn">
-                        <span class="btn-text">Download CV</span>
-                        <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
-                </div> -->
+  <body>
+    <div id="intro" aria-hidden="true">
+      <div class="wc"></div>
+      <div class="wm"></div>
+      <div class="wy"></div>
+      <div class="pp">
+        <div class="ir">
+          <i></i><i></i><i></i>
+          <div class="ln"><i></i></div>
         </div>
       </div>
+    </div>
+    <div id="bar"></div>
+    <header>
+      <div class="wrap">
+        <a class="logo" href="#top">Jack</a>
+        <nav aria-label="主選單">
+          <a href="#services">服務</a><a href="#works">作品</a><a href="#about">經歷</a><a href="#contact">聯絡</a>
+        </nav>
+      </div>
     </header>
-    <main>
-      <section class="container about" id="about">
-        <div class="main-title">
-          <h2>關於<span>我</span><span class="bg-text">my stats</span></h2>
-        </div>
-        <div class="about-stats">
-          <h4 class="stat-title">工作技能</h4>
-          <div class="progress-bars">
-            <div class="progress-bar">
-              <p class="prog-title">css3</p>
-              <div class="progress-con">
-                <p class="prog-text">95%</p>
-                <div class="progress">
-                  <span class="css"></span>
-                </div>
-              </div>
+
+    <main id="top">
+      <div class="dark">
+        <div class="wrap hero">
+          <div>
+            <h1>把設計稿，做成好用的網頁。</h1>
+            <p class="lead">
+              我是 Jack，前端工程師。從平面與包裝設計入行，累積 10 年設計經驗，再轉做前端，用 Vue 3 與 React
+              開發網站和產品介面。
+            </p>
+            <div class="btns">
+              <a class="btn pri" href="#works">看作品</a>
+              <a class="btn" href="mailto:jack.bbv@gmail.com">寄信給我</a>
             </div>
-            <div class="progress-bar">
-              <p class="prog-title">javascript</p>
-              <div class="progress-con">
-                <p class="prog-text">90%</p>
-                <div class="progress">
-                  <span class="js"></span>
-                </div>
-              </div>
-            </div>
-            <div class="progress-bar">
-              <p class="prog-title">Vue3</p>
-              <div class="progress-con">
-                <p class="prog-text">80%</p>
-                <div class="progress">
-                  <span class="vue"></span>
-                </div>
-              </div>
-            </div>
-            <div class="progress-bar">
-              <p class="prog-title">React</p>
-              <div class="progress-con">
-                <p class="prog-text">60%</p>
-                <div class="progress">
-                  <span class="react"></span>
-                </div>
-              </div>
-            </div>
+            <ul class="tags" aria-label="技能">
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Vue 3</li>
+              <li>Nuxt.js</li>
+              <li>React</li>
+              <li>Next.js</li>
+              <li>Tailwind CSS</li>
+              <li>AI Agent</li>
+            </ul>
+          </div>
+          <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 300 280">
+              <circle class="c" cx="115" cy="105" r="85" fill="#00A3E0" />
+              <circle class="m" cx="185" cy="105" r="85" fill="#E6007E" />
+              <circle class="y" cx="150" cy="165" r="85" fill="#FFD200" />
+            </svg>
           </div>
         </div>
-        <h4 class="stat-title">工作經歷</h4>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="tl-icon">
-              <i class="fas fa-briefcase"></i>
+      </div>
+      <div class="marq" aria-hidden="true"><div></div></div>
+
+      <section id="services" class="band b-services">
+        <div class="wrap">
+          <h2>我能幫你做什麼</h2>
+          <p class="sub">設計與前端都做過，所以從版面到程式，可以一次溝通完。</p>
+          <div class="svc">
+            <div class="rv">
+              <h3>前端開發</h3>
+              <p>用 Vue 3 或 React 開發網站與管理介面，串接 API，並把畫面拆成好維護的元件。</p>
             </div>
-            <p class="tl-duration">2006 - 2009</p>
-            <h5>黑秀網、518外包網<span> - 兼職設計師</span></h5>
-            <p>包含平面設計、包裝設計、印刷品設計等等…</p>
+            <div class="rv">
+              <h3>切版與響應式</h3>
+              <p>把設計稿切成頁面，在手機、平板、桌機上都能正確顯示，細節和設計稿一致。</p>
+            </div>
+            <div class="rv">
+              <h3>介面與視覺設計</h3>
+              <p>從版面、配色到操作流程一起規劃，不必另外找設計師。</p>
+            </div>
+            <div class="rv">
+              <h3>效能與體驗優化</h3>
+              <p>檢查既有網站的載入速度與介面問題，改善使用者實際操作的感受。</p>
+            </div>
           </div>
-          <div class="timeline-item">
-            <div class="tl-icon">
-              <i class="fas fa-briefcase"></i>
-            </div>
-            <p class="tl-duration">2017 - 2018</p>
-            <h5>聖洺國際<span> - 網站視覺前端</span></h5>
-            <p>UI / UX WEB 視覺設計與規劃，行動裝置頁面設計。</p>
+        </div>
+      </section>
+
+      <section id="works" class="band blue">
+        <div class="wrap">
+          <h2>作品</h2>
+          <p class="sub">往下捲動，作品會橫向移動；手機可直接左右滑動。每個作品都能點開線上展示。</p>
+        </div>
+        <div class="hs">
+          <div class="stick">
+            <div class="track"></div>
+            <div class="hp"><i></i></div>
           </div>
-          <div class="timeline-item">
-            <div class="tl-icon">
-              <i class="fas fa-briefcase"></i>
-            </div>
-            <p class="tl-duration">2010 - 2013</p>
-            <h5>精興國際<span> - 美編設計師</span></h5>
+        </div>
+      </section>
+
+      <section id="about" class="band b-about">
+        <div class="wrap">
+          <h2>經歷</h2>
+          <p class="sub">
+            我從平面與包裝設計開始，接著做電商視覺、網站視覺，最後轉進前端開發。所以我看得懂設計稿的細節，也知道工程上哪些做法可行。我專注在前端開發與實作，持續深耕技術。
+          </p>
+          <ol class="tl">
+            <li class="rv">
+              <time>2025/06 – 2026/10</time>
+              <h3>富邦官網開發維護、MOMO 聯盟行銷分潤系統開發</h3>
+              <p class="meta">翰霖科技｜專案團隊成員｜團隊 10 人</p>
+              <p>
+                使用 Vue 3 開發與維護官網，以元件化架構拆分行動版導覽列，透過 props
+                設計提升元件複用性與可維護性。負責供應商分潤管理：優化前端頁面、製作分潤報表、串接 API。
+              </p>
+            </li>
+            <li class="rv">
+              <time>2025/04 – 2026/05</time>
+              <h3>SCM 前後台設計</h3>
+              <p class="meta">MOMO 富邦媒體科技｜團隊 15 人</p>
+              <p>
+                以 React + MUI
+                實作搜尋模組（自動完成、推薦詞、熱門搜尋、搜尋紀錄、分頁載入與資料更新）；重構元件並抽出共用
+                shared-lib；SCSS 逐步改為 Tailwind CSS 與 BEM；透過 React 元件設計、狀態管理與 Next.js
+                頁面架構規劃，逐步建立容易維護與擴充的前端架構。
+              </p>
+            </li>
+            <li class="rv">
+              <time>2019/07 – 2024/07</time>
+              <h3>公司官網等約 15 個專案</h3>
+              <p class="meta">騰睿達科技｜團隊 20 人</p>
+              <p>
+                開發維護與新功能；與 UI 設計師、QA 協作；將 Vue 2 升級為 Vue 3 + Nuxt.js（SSR、CDN、Lazy
+                Load）；撰寫使用文件。
+              </p>
+            </li>
+            <li class="rv">
+              <time>2018/07 – 2019/06</time>
+              <h3>公司內部資料庫系統</h3>
+              <p class="meta">全穩生技｜團隊 10 人</p>
+              <p>使用 Vue.js（Vuex）、ElementUI、Tailwind CSS，與後端工程師串接 API。</p>
+            </li>
+            <li class="rv">
+              <time>2017 – 2018</time>
+              <h3>聖洺國際｜網站視覺前端</h3>
+              <p>規劃並設計網站與行動裝置頁面的 UI / UX 視覺。</p>
+            </li>
+            <li class="rv">
+              <time>2006 – 2016</time>
+              <h3>前端之前｜10 年設計工作</h3>
+              <p>平面、包裝、印刷品與電商行銷設計。</p>
+            </li>
+          </ol>
+          <div class="ai rv">
+            <h3>AI Agent 協作開發</h3>
             <p>
-              2010年6月參與COMPUTEX TAIPEI台北國際電腦展。<br />
-              2012年參與香港電子產品展，擔任展場佈置、商品設計一系列活動。
+              日常開發會搭配 AI
+              agent，協助閱讀既有程式碼、重構元件、補齊文件與測試、排查問題。我負責拆解需求、決定架構，並審查與實際執行驗證
+              AI 產出的程式碼後才提交。
             </p>
           </div>
-          <div class="timeline-item">
-            <div class="tl-icon">
-              <i class="fas fa-briefcase"></i>
-            </div>
-            <p class="tl-duration">2018 - 2019</p>
-            <h5>全穩生技<span> - 駐點前端工程師</span></h5>
-            <p>前端網頁切版，協同後端工程師完成專案。優化 Web 應用程式效能和使用者體驗，解決介面問題。</p>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-icon">
-              <i class="fas fa-briefcase"></i>
-            </div>
-            <p class="tl-duration">2013 - 2016</p>
-            <h5>明恆<span> - 行銷設計</span></h5>
-            <p>電子商務PChome網拍行銷設計維護公司官網、FB粉絲團經營等等。</p>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-icon">
-              <i class="fas fa-briefcase"></i>
-            </div>
-            <p class="tl-duration">2020 - 2024</p>
-            <h5>騰睿達科技<span> - 前端工程師</span></h5>
-            <p>公司產品前端框架研發，包含PC web、H5和APP，進行各產品易用性改進、介面技術及網站性能優化。</p>
-          </div>
         </div>
       </section>
-      <section class="container" id="portfolio">
-        <div class="main-title">
-          <h2>React<span>/</span> Vue<span> 前端設計</span><span class="bg-text">My Works</span></h2>
-        </div>
-        <div class="portfolios">
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port1.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>Github資料庫搜尋(React)</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/github-search" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/github-search" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port2.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>網站檢測頁</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/preload" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/preload" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port3.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>Vue todo list</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/todolist" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/todolist" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port4.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>18歲成年檢測</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/age-check" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/age-check" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port5.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>天氣查詢系統</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/weather" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/weather" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port6.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>iFarmer 智能管理系统(Demo)</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/ifarmer" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/ifarmer" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port7.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>H5棋牌演示廳</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/card-list" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/card-list" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port8.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>國際網站演示</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/web-demo" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/web-demo" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <div class="image">
-              <img src="img/port9.jpg" alt="" />
-            </div>
-            <div class="hover-items">
-              <h3>璽美國際娛樂</h3>
-              <div class="icons">
-                <a href="https://jack-bi.github.io/seebeautytec" class="icon" target="_blank">
-                  <i class="fab fa fa-link"></i>
-                </a>
-                <a href="https://github.com/jack-bi/seebeautytec" class="icon" target="_blank">
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="container" id="blogs">
-        <div class="blogs-content">
-          <div class="main-title">
-            <h2>網頁<span>設計</span><span class="bg-text">WEB DESIGN</span></h2>
-          </div>
-          <div class="blogs">
-            <a href="http://sign166.yabi.me" class="blog" target="_blank">
-              <img src="img/blog1.jpg" alt="" />
-              <div class="blog-text">
-                <h4>166簽名</h4>
-              </div>
-            </a>
-            <a href="http://gainbest.yabi.me" class="blog" target="_blank">
-              <img src="img/blog2.jpg" alt="" />
-              <div class="blog-text">
-                <h4>嘉佰勝科技</h4>
-              </div>
-            </a>
-            <a href="http://bg-gaming.yabi.me" class="blog" target="_blank">
-              <img src="img/blog3.jpg" alt="" />
-              <div class="blog-text">
-                <h4>BG Gaming</h4>
-              </div>
-            </a>
-            <a href="https://jack-bi.github.io/bg-demo" class="blog" target="_blank">
-              <img src="img/blog4.jpg" alt="" />
-              <div class="blog-text">
-                <h4>BG DEMO 演示廳一</h4>
-              </div>
-            </a>
-            <a href="https://jack-bi.github.io/bg-demo2" class="blog" target="_blank">
-              <img src="img/blog5.jpg" alt="" />
-              <div class="blog-text">
-                <h4>BG DEMO 演示廳二</h4>
-              </div>
-            </a>
-            <a href="http://bigsuccess88.yabi.me" class="blog" target="_blank">
-              <img src="img/blog6.jpg" alt="" />
-              <div class="blog-text">
-                <h4>大成環球</h4>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-      <section class="container contact" id="contact">
-        <div class="contact-container">
-          <div class="main-title">
-            <h2>聯繫<span>我</span><span class="bg-text">Contact</span></h2>
-          </div>
-          <div class="contact-content-con">
-            <div class="left-contact">
-              <h4>Contact me</h4>
-              <p>謝謝您的蒞臨！若您對服務有任何建議或需求，歡迎您留言諮詢， 我將儘快為您解答並回覆您，謝謝!!</p>
-              <div class="contact-info">
-                <div class="contact-item">
-                  <div class="icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>住址 : </span>
-                  </div>
-                  <p>新北市三重</p>
-                </div>
-                <div class="contact-item">
-                  <div class="icon">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email : </span>
-                  </div>
-                  <p>
-                    <span>jack.bbv@gmail.com</span>
-                  </p>
-                </div>
-                <div class="contact-item">
-                  <div class="icon">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>行 動 電 話 : </span>
-                  </div>
-                  <p>
-                    <span>0966-501986</span>
-                  </p>
-                </div>
-              </div>
-              <div class="contact-icons">
-                <div class="contact-icon">
-                  <a href="https://github.com/jack-bi" target="_blank">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="right-contact">
-              <form action="javascript:toSend();" class="contact-form">
-                <div class="input-control i-c-2">
-                  <input type="text" required placeholder="您的名字" name="Name" id="nameValue" />
-                  <input type="email" required placeholder="您的信箱" name="Mail" id="mailValue" />
-                </div>
-                <div class="input-control">
-                  <input type="text" required placeholder="主題" name="Topic" id="topicValue" />
-                </div>
-                <div class="input-control">
-                  <textarea
-                    cols="15"
-                    rows="8"
-                    required
-                    placeholder="訊息內容…"
-                    name="Content"
-                    id="contentValue"
-                  ></textarea>
-                </div>
-                <button id="btn" class="btn-con" type="submit">
-                  <a class="main-btn">
-                    <span class="btn-icon"><i class="fas fa-envelope-open"></i></span>
-                    <span class="btn-text">寄 出</span>
-                  </a>
-                </button>
-              </form>
-            </div>
+
+      <section id="contact" class="band b-contact">
+        <div class="wrap">
+          <h2>合作洽談</h2>
+          <p class="sub">
+            無論是新網站建置、既有網站改版，或前端開發的人力協助，歡迎來信說明需求，我會盡快回覆並與您討論合作方式。
+          </p>
+          <a class="mail" href="mailto:jack.bbv@gmail.com">jack.bbv@gmail.com</a>
+          <div class="links" style="margin-top: 24px">
+            <a href="https://github.com/jack-bi" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
       </section>
     </main>
 
-    <div class="controls">
-      <div class="control active-btn" data-id="home">
-        <i class="fas fa-home"></i>
-      </div>
-      <div class="control" data-id="about">
-        <i class="fas fa-user"></i>
-      </div>
-      <div class="control" data-id="portfolio">
-        <i class="fas fa-briefcase"></i>
-      </div>
-      <div class="control" data-id="blogs">
-        <i class="far fa-newspaper"></i>
-      </div>
-      <div class="control" data-id="contact">
-        <i class="fas fa-envelope-open"></i>
-      </div>
-    </div>
-    <div class="theme-btn">
-      <i class="fas fa-adjust"></i>
-    </div>
-    <script src="app.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <footer><div class="wrap">© 2026 Jack</div></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-      function toSend() {
-        let name = document.getElementById('nameValue').value
-        let mail = document.getElementById('mailValue').value
-        let topic = document.getElementById('topicValue').value
-        let content = document.getElementById('contentValue').value
-        $.ajax({
-          url: 'https://script.google.com/macros/s/AKfycbxJGemhECr0KpW6DJmrWC5AOeJ-xNHVeM5uZs72NcGzSKLoX3jkAZo37zvb-arrCf1bWg/exec', //Google Form 裡面的 form action 網址
-          data: {
-            name: name,
-            mail: mail,
-            topic: topic,
-            content: content,
-          },
-          success: function (response) {
-            if (response == '成功') {
-              alert('表單已寄出，謝謝!')
+      document.documentElement.classList.add('js')
+      var bar = document.getElementById('bar')
+      addEventListener(
+        'scroll',
+        function () {
+          var h = document.documentElement
+          bar.style.transform = 'scaleX(' + scrollY / (h.scrollHeight - innerHeight || 1) + ')'
+        },
+        { passive: true }
+      )
+      var io = new IntersectionObserver(
+        function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('in')
+              io.unobserve(e.target)
             }
-            $('.contact-form')[0].reset() //Clear form data
-          },
-          error: function (response) {
-            console.log(response + '的錯誤')
-          },
+          })
+        },
+        { threshold: 0.12 }
+      )
+      document.querySelectorAll('.rv').forEach(function (el) {
+        io.observe(el)
+      })
+      var links = [].slice.call(document.querySelectorAll('nav a'))
+      var so = new IntersectionObserver(
+        function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) {
+              links.forEach(function (a) {
+                a.classList.toggle('on', a.hash === '#' + e.target.id)
+              })
+            }
+          })
+        },
+        { rootMargin: '-40% 0px -55% 0px' }
+      )
+      document.querySelectorAll('main section[id]').forEach(function (s) {
+        so.observe(s)
+      })
+
+      var calm = matchMedia('(prefers-reduced-motion:reduce)').matches
+      var hover = matchMedia('(hover:hover)').matches
+
+      /* loading intro: ink circles register, counter runs, three colour sheets wipe away */
+      ;(function () {
+        var el = document.getElementById('intro'),
+          root = document.documentElement
+        function done() {
+          root.classList.add('ready')
+          dispatchEvent(new Event('introdone'))
+        }
+        if (calm || !el) {
+          if (el) el.remove()
+          done()
+          return
+        }
+        var t0 = performance.now(),
+          MIN = 1800,
+          loaded = document.readyState === 'complete',
+          out = false
+        addEventListener('load', function () {
+          loaded = true
+        })
+        ;(function f(now) {
+          var p = Math.min((now - t0) / MIN, 1)
+          p = 1 - Math.pow(1 - p, 2)
+          var v = loaded ? p : Math.min(p, 0.99)
+          el.style.setProperty('--p', v)
+          if (v >= 1) {
+            out = true
+            el.classList.add('out')
+            setTimeout(done, 500)
+            setTimeout(function () {
+              el.remove()
+            }, 1700)
+          } else requestAnimationFrame(f)
+        })(t0)
+      })()
+
+      /* headline: letter-by-letter entrance */
+      var h1 = document.querySelector('h1'),
+        txt = h1.textContent
+      h1.setAttribute('aria-label', txt)
+      h1.textContent = ''
+      ;[].forEach.call(txt, function (c, i) {
+        var s = document.createElement('span')
+        s.className = 'ch'
+        s.setAttribute('aria-hidden', 'true')
+        s.style.setProperty('--i', i)
+        s.textContent = c
+        h1.appendChild(s)
+      })
+
+      /* marquee: speeds up and reverses with scroll */
+      var mq = document.querySelector('.marq div')
+      var seq = ['Vue 3', 'Nuxt.js', 'React', 'Next.js', 'AI Agent'],
+        half = ''
+      for (var n = 0; n < 3; n++)
+        seq.forEach(function (s) {
+          half += s + '<i></i>'
+        })
+      mq.innerHTML = half + half
+      if (!calm) {
+        var x = 0,
+          ly = scrollY,
+          v = 0
+        ;(function f() {
+          var d = scrollY - ly
+          ly = scrollY
+          v += (d - v) * 0.1
+          var p = mq.scrollWidth / 2
+          x -= 0.6 + v * 0.5
+          x = x % p
+          if (x > 0) x -= p
+          mq.style.transform = 'translateX(' + x + 'px)'
+          requestAnimationFrame(f)
+        })()
+      }
+
+      /* works: data -> horizontal scroller */
+      var W = [
+        [
+          '專案',
+          'iFarmer 智能管理系統（Demo）',
+          '智慧農場管理系統的前端 Demo，重點在管理後台的操作流程與資料呈現。',
+          'port6',
+          'ifarmer',
+        ],
+        ['專案', '國際網站演示', '多頁式企業網站範例，重視版面一致性與各種裝置上的顯示。', 'port8', 'web-demo'],
+        ['專案', '璽美國際娛樂', '品牌形象網站，從視覺設計到切版與互動一手完成。', 'port9', 'seebeautytec'],
+        ['專案', '手機棋牌演示廳', '手機優先的遊戲大廳頁面，兼顧載入速度與觸控操作。', 'port7', 'card-list'],
+      ]
+      var D = [
+        ['BG 演示廳一', 'https://jack-bi.github.io/bg-demo'],
+        ['BG 演示廳二', 'https://jack-bi.github.io/bg-demo2'],
+      ]
+      window.imgFail = function (im) {
+        if (im.dataset.fb && !im.dataset.t) {
+          im.dataset.t = 1
+          im.src = im.dataset.fb
+        } else im.remove()
+      }
+      function card(i, kind, name, desc, img, fb, links) {
+        return (
+          '<article class="card"><div class="shot k' +
+          (i % 3) +
+          '"><b>' +
+          name +
+          '</b><img src="' +
+          img +
+          '" data-fb="' +
+          fb +
+          '" alt="' +
+          name +
+          ' 畫面" decoding="async" onerror="imgFail(this)"></div><div><span class="kind">' +
+          kind +
+          '</span><h3>' +
+          name +
+          '</h3><p>' +
+          desc +
+          '</p><div class="links">' +
+          links +
+          '</div></div></article>'
+        )
+      }
+      var ch = '',
+        gh = 'https://github.com/jack-bi/'
+      W.forEach(function (w, i) {
+        ch += card(
+          i,
+          w[0],
+          w[1],
+          w[2],
+          'img/' + w[3] + '.jpg',
+          '',
+          '<a href="https://jack-bi.github.io/' +
+            w[4] +
+            '" target="_blank" rel="noopener">線上展示</a><a href="' +
+            gh +
+            w[4] +
+            '" target="_blank" rel="noopener">原始碼</a>'
+        )
+      })
+      D.forEach(function (d, i) {
+        ch += card(
+          W.length + i,
+          '網頁設計案',
+          d[0],
+          '網站設計與製作。',
+          'img/web' + (i + 1) + '.jpg',
+          'https://s0.wp.com/mshots/v1/' + encodeURIComponent(d[1]) + '?w=800&h=500',
+          '<a href="' + d[1] + '" target="_blank" rel="noopener">線上瀏覽</a>'
+        )
+      })
+      var hs = document.querySelector('.hs'),
+        track = hs.querySelector('.track'),
+        prog = hs.querySelector('.hp i')
+      track.innerHTML = ch
+
+      /* pinned horizontal scroll: vertical scroll drives sideways movement (desktop only) */
+      var pinned = false,
+        dist = 0,
+        cur = 0,
+        HH = 60
+      function layout() {
+        pinned = matchMedia('(min-width:761px)').matches && !calm
+        hs.classList.toggle('pin', pinned)
+        if (pinned) {
+          dist = Math.max(track.scrollWidth - innerWidth, 0)
+          hs.style.height = dist + innerHeight - HH + 'px'
+        } else {
+          hs.style.height = ''
+          track.style.transform = ''
+        }
+      }
+      layout()
+      addEventListener('resize', layout)
+      addEventListener('load', layout)
+      ;(function loop() {
+        requestAnimationFrame(loop)
+        if (!pinned) return
+        var span = hs.offsetHeight - (innerHeight - HH)
+        var p = span > 0 ? Math.min(Math.max((HH - hs.getBoundingClientRect().top) / span, 0), 1) : 0
+        cur += (p - cur) * 0.12
+        track.style.transform = 'translateX(' + -cur * dist + 'px)'
+        prog.style.transform = 'scaleX(' + cur + ')'
+      })()
+
+      /* work screenshots tilt toward the pointer; buttons pull toward it */
+      if (hover && !calm) {
+        document.querySelectorAll('.card .shot').forEach(function (im) {
+          im.addEventListener('pointermove', function (e) {
+            var r = im.getBoundingClientRect(),
+              px = (e.clientX - r.left) / r.width - 0.5,
+              py = (e.clientY - r.top) / r.height - 0.5
+            im.style.transform =
+              'perspective(700px) rotateY(' + px * 14 + 'deg) rotateX(' + -py * 14 + 'deg) scale(1.03)'
+          })
+          im.addEventListener('pointerleave', function () {
+            im.style.transform = ''
+          })
+        })
+        document.querySelectorAll('.btn,.mail').forEach(function (b) {
+          b.addEventListener('pointermove', function (e) {
+            var r = b.getBoundingClientRect()
+            b.style.transform =
+              'translate(' +
+              (e.clientX - r.left - r.width / 2) * 0.18 +
+              'px,' +
+              (e.clientY - r.top - r.height / 2) * 0.28 +
+              'px)'
+          })
+          b.addEventListener('pointerleave', function () {
+            b.style.transform = ''
+          })
         })
       }
+
+      /* hero: spheres deform with scroll and pointer, surrounded by a particle swarm */
+      ;(function () {
+        var mark = document.querySelector('.mark')
+        if (!window.THREE || calm) return
+        try {
+          var R = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+          R.setPixelRatio(Math.min(devicePixelRatio, 2))
+          mark.appendChild(R.domElement)
+          mark.classList.add('gl')
+          var S = new THREE.Scene(),
+            C = new THREE.PerspectiveCamera(40, 1, 0.1, 100)
+          C.position.z = 13.75
+          S.add(new THREE.AmbientLight(0xffffff, 0.75))
+          var L = new THREE.DirectionalLight(0xffffff, 0.9)
+          L.position.set(3, 4, 6)
+          S.add(L)
+          var G = new THREE.Group()
+          S.add(G)
+          var ms = []
+          ;[0x00a3e0, 0xe6007e, 0xffd200].forEach(function (c, i) {
+            var g = new THREE.IcosahedronGeometry(1.5, 3)
+            var m = new THREE.Mesh(
+              g,
+              new THREE.MeshStandardMaterial({
+                color: c,
+                roughness: 0.35,
+                metalness: 0.1,
+                transparent: true,
+                opacity: 0.88,
+              })
+            )
+            m.userData = {
+              a: i * 2.094,
+              s: i * 7,
+              o: g.attributes.position.array.slice(),
+              n: g.attributes.normal.array.slice(),
+            }
+            G.add(m)
+            ms.push(m)
+          })
+          var N = 900,
+            pp = new Float32Array(N * 3),
+            pc = new Float32Array(N * 3)
+          var pal = [
+            [0, 0.64, 0.88],
+            [0.9, 0, 0.49],
+            [1, 0.82, 0],
+            [0.95, 0.95, 0.97],
+          ]
+          for (var i = 0; i < N; i++) {
+            var r = 2.9 + Math.random() * 0.8,
+              th = Math.random() * 6.283,
+              ph = Math.acos(2 * Math.random() - 1),
+              c = pal[i % 4]
+            pp[i * 3] = r * Math.sin(ph) * Math.cos(th)
+            pp[i * 3 + 1] = r * Math.cos(ph)
+            pp[i * 3 + 2] = r * Math.sin(ph) * Math.sin(th)
+            pc[i * 3] = c[0]
+            pc[i * 3 + 1] = c[1]
+            pc[i * 3 + 2] = c[2]
+          }
+          var pg = new THREE.BufferGeometry()
+          pg.setAttribute('position', new THREE.BufferAttribute(pp, 3))
+          pg.setAttribute('color', new THREE.BufferAttribute(pc, 3))
+          var pts = new THREE.Points(
+            pg,
+            new THREE.PointsMaterial({
+              size: 0.09,
+              vertexColors: true,
+              transparent: true,
+              opacity: 0.75,
+              depthWrite: false,
+            })
+          )
+          G.add(pts)
+          var mx = 0,
+            my = 0,
+            en = 0,
+            cur = 0,
+            t0 = null,
+            vis = true
+          addEventListener('introdone', function () {
+            t0 = performance.now()
+          })
+          function fit() {
+            var s = mark.clientWidth * 1.25
+            R.setSize(s, s)
+          }
+          fit()
+          addEventListener('resize', fit)
+          addEventListener('pointermove', function (e) {
+            var x = e.clientX / innerWidth - 0.5,
+              y = e.clientY / innerHeight - 0.5
+            en = Math.min(en + Math.hypot(x - mx, y - my) * 6, 1)
+            mx = x
+            my = y
+          })
+          new IntersectionObserver(function (e) {
+            vis = e[0].isIntersecting
+          }).observe(mark)
+          ;(function tick(now) {
+            requestAnimationFrame(tick)
+            if (!vis) return
+            var t = t0 === null ? 0 : (now - t0) / 1000,
+              k = Math.min(t / 2.2, 1)
+            k = 1 - Math.pow(1 - k, 3)
+            cur += (Math.min(scrollY / 700, 1) - cur) * 0.08
+            en *= 0.95
+            var amp = 0.05 + cur * 0.55 + en * 0.3,
+              spread = (1 - k) * 1.5 + cur * 0.8
+            ms.forEach(function (m) {
+              var a = m.userData.a + t * 0.6,
+                rr = 0.9 + spread,
+                o = m.userData.o,
+                n = m.userData.n,
+                ph = m.userData.s + t * 1.4
+              var pos = m.geometry.attributes.position.array
+              for (var i = 0; i < o.length; i += 3) {
+                var x = o[i],
+                  y = o[i + 1],
+                  z = o[i + 2]
+                var d =
+                  (amp * (Math.sin(x * 1.6 + ph) + Math.sin(y * 1.9 - ph * 1.3) + Math.sin(z * 1.4 + ph * 0.7))) / 3
+                pos[i] = x + n[i] * d
+                pos[i + 1] = y + n[i + 1] * d
+                pos[i + 2] = z + n[i + 2] * d
+              }
+              m.geometry.attributes.position.needsUpdate = true
+              m.position.set(Math.cos(a) * rr, Math.sin(a) * rr * 0.9, Math.sin(a * 1.5) * 0.6)
+              m.rotation.x = t * 0.3
+              m.rotation.y = t * 0.4
+            })
+            pts.rotation.y = t * 0.12 + cur * 2
+            pts.rotation.x = t * 0.05
+            pts.scale.setScalar(1 + cur * 0.45 + Math.sin(t * 1.2) * 0.02)
+            pts.material.opacity = 0.75 * (1 - cur * 0.5)
+            G.rotation.y += (mx * 1.2 - G.rotation.y) * 0.06
+            G.rotation.x += (my * 0.8 - G.rotation.x) * 0.06
+            R.render(S, C)
+          })(performance.now())
+        } catch (e) {}
+      })()
     </script>
   </body>
 </html>
