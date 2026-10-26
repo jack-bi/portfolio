@@ -1200,21 +1200,56 @@
         // ['專案', '國際網站演示', '多頁式企業網站範例，重視版面一致性與各種裝置上的顯示。', 'port8', 'web-demo'],
         // ['專案', '璽美國際娛樂', '品牌形象網站，從視覺設計到切版與互動一手完成。', 'port9', 'seebeautytec'],
         // ['專案', '手機棋牌演示廳', '手機優先的遊戲大廳頁面，兼顧載入速度與觸控操作。', 'port7', 'card-list'],
-        ['專案', '富邦企業網站', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX。', 'port7', 'web-demo'],
-        ['專案', 'MOMO購物網', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX。', 'port8', 'seebeautytec'],
-        ['專案', 'MOMO SCM後台管理', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX。', 'port9', 'seebeautytec'],
-        ['專案', '華南永昌投信', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX。', 'port10', 'card-list'],
         [
           '專案',
-          'iFarmer 智能管理系統（Demo）',
-          '智慧農場管理系統的前端 Demo，重點在管理後台的操作流程與資料呈現。',
-          'port6',
-          'ifarmer',
+          '富邦企業網站',
+          '參與企業官網開發與維護，以 Vue 3 建立元件化頁面，優化行動版導覽與響應式體驗，讓內容在不同裝置上都能清楚呈現。',
+          'web1',
+          'https://jack-bi.github.io/web-demo',
         ],
-        ['專案', '璽美國際娛樂', '品牌形象網站，從視覺設計到切版與互動一手完成。', 'port9', 'seebeautytec'],
-      ]
-      var D = [
-        ['BG 演示廳', 'https://jack-bi.github.io/bg-demo2'],
+        [
+          '專案',
+          'MOMO購物網',
+          '參與大型電商平台前端開發，實作搜尋、自動完成、熱門推薦與分頁載入等功能，並持續改善購物流程與頁面效能。',
+          'web2',
+          'https://jack-bi.github.io/seebeautytec',
+        ],
+        [
+          '專案',
+          'MOMO SCM後台管理',
+          '以 React、Next.js 與 MUI 建置供應商後台，整合資料查詢、表單操作及報表功能，並透過共用元件提升開發與維護效率。',
+          'web3',
+          'https://jack-bi.github.io/seebeautytec',
+        ],
+        [
+          '專案',
+          '華南永昌投信',
+          '開發金融服務網站的登入與資訊頁面，依循品牌視覺完成響應式切版，並兼顧表單操作、資訊層級與跨裝置瀏覽體驗。',
+          'web4',
+          'https://jack-bi.github.io/card-list',
+        ],
+        [
+          '專案',
+          'iFarmer 智能管理系統',
+          '智慧農場管理系統前端，整合登入、資料總覽與管理流程，以清楚的資訊層級呈現農務數據，兼顧操作效率與響應式體驗。',
+          'web5',
+          'https://jack-bi.github.io/ifarmer',
+          'https://github.com/jack-bi/ifarmer',
+        ],
+        [
+          '專案',
+          '璽美國際娛樂',
+          '負責品牌形象網站的視覺設計、響應式切版與互動效果，以鮮明質感呈現品牌定位，並讓桌機與手機皆保有一致體驗。',
+          'web6',
+          'https://jack-bi.github.io/seebeautytec',
+        ],
+        [
+          '網頁設計案',
+          'BG 演示廳',
+          '以國際品牌形象為核心規劃網站視覺與前端版面，透過清楚的內容導覽、活動焦點與響應式設計，提升跨裝置瀏覽體驗。',
+          'web7',
+          'https://jack-bi.github.io/bg-demo2',
+        ],
       ]
       window.imgFail = function (im) {
         if (im.dataset.fb && !im.dataset.t) {
@@ -1222,19 +1257,21 @@
           im.src = im.dataset.fb
         } else im.remove()
       }
-      function card(i, kind, name, desc, img, fb, links) {
+      function card(i, kind, name, desc, img, url, links) {
         return (
-          '<article class="card"><div class="shot k' +
+          '<article class="card"><a class="shot k' +
           (i % 3) +
-          '"><b>' +
+          '" href="' +
+          url +
+          '" target="_blank" rel="noopener" aria-label="開啟' +
+          name +
+          '線上展示"><b>' +
           name +
           '</b><img src="' +
           img +
-          '" data-fb="' +
-          fb +
           '" alt="' +
           name +
-          ' 畫面" decoding="async" onerror="imgFail(this)"></div><div><span class="kind">' +
+          ' 畫面" decoding="async" onerror="imgFail(this)"></a><div><span class="kind">' +
           kind +
           '</span><h3>' +
           name +
@@ -1245,35 +1282,18 @@
           '</div></div></article>'
         )
       }
-      var ch = '',
-        gh = 'https://github.com/jack-bi/'
+      var ch = ''
       W.forEach(function (w, i) {
-        var src =
-          w[4] === 'ifarmer'
-            ? '<a href="' + gh + w[4] + '" target="_blank" rel="noopener">原始碼</a>'
-            : ''
+        var src = w[5] ? '<a href="' + w[5] + '" target="_blank" rel="noopener">原始碼</a>' : ''
         ch += card(
           i,
           w[0],
           w[1],
           w[2],
           'img/' + w[3] + '.jpg',
-          '',
-          '<a href="https://jack-bi.github.io/' +
-            w[4] +
-            '" target="_blank" rel="noopener">線上展示</a>' +
+          w[4],
+          '<a href="' + w[4] + '" target="_blank" rel="noopener">線上展示</a>' +
             src
-        )
-      })
-      D.forEach(function (d, i) {
-        ch += card(
-          W.length + i,
-          '網頁設計案',
-          d[0],
-          '網站設計與製作。',
-          'img/web' + (i + 1) + '.jpg',
-          'https://s0.wp.com/mshots/v1/' + encodeURIComponent(d[1]) + '?w=800&h=500',
-          '<a href="' + d[1] + '" target="_blank" rel="noopener">線上瀏覽</a>'
         )
       })
       var hs = document.querySelector('.hs'),
