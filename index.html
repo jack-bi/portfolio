@@ -1233,9 +1233,6 @@
 
       /* works: data -> horizontal scroller */
       var W = [
-        // ['專案', '國際網站演示', '多頁式企業網站範例，重視版面一致性與各種裝置上的顯示。', 'port8', 'web-demo'],
-        // ['專案', '璽美國際娛樂', '品牌形象網站，從視覺設計到切版與互動一手完成。', 'port9', 'seebeautytec'],
-        // ['專案', '手機棋牌演示廳', '手機優先的遊戲大廳頁面，兼顧載入速度與觸控操作。', 'port7', 'card-list'],
         [
           '專案',
           '富邦企業網站',
@@ -1320,7 +1317,6 @@
       }
       var ch = ''
       W.forEach(function (w, i) {
-        var src = w[5] ? '<a href="' + w[5] + '" target="_blank" rel="noopener">原始碼</a>' : ''
         ch += card(
           i,
           w[0],
@@ -1328,8 +1324,7 @@
           w[2],
           'img/' + w[3] + '.jpg',
           w[4],
-          '<a href="' + w[4] + '" target="_blank" rel="noopener">線上展示</a>' +
-            src
+          '<a href="' + w[4] + '" target="_blank" rel="noopener">線上展示</a>'
         )
       })
       var hs = document.querySelector('.hs'),
